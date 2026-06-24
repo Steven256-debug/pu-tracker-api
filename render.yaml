@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: pu-tracker-api
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: ALLOWED_ORIGINS
+        value: https://your-vercel-app.vercel.app
+      - key: ARTEFACT_DIR
+        value: /opt/render/project/src/backend
+      # Role passwords (set values in Render dashboard)
+      - key: DEAN_PASSWORD
+        sync: false
+      - key: HOD_FESAC_PASSWORD
+        sync: false
+      - key: HOD_FBA_PASSWORD
+        sync: false
+      - key: HOD_FEHAS_PASSWORD
+        sync: false
+      - key: HOD_PSTM_PASSWORD
+        sync: false
+      - key: ADVISOR_FESAC_PASSWORD
+        sync: false
+      - key: ADVISOR_FBA_PASSWORD
+        sync: false
+      - key: ADVISOR_FEHAS_PASSWORD
+        sync: false
+      - key: ADVISOR_PSTM_PASSWORD
+        sync: false
